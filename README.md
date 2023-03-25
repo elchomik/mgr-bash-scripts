@@ -4,8 +4,8 @@ The scripts was created to detect the moment a user interacts with a mobile appl
 
 ## How to run scripts
 
-1. Open the **git bash cmd **
-2. Type ** ./badania.sh <user_name>** Or **bash badania.sh <user_name>"**
+1. Open the **git bash cmd**
+2. Type **./badania.sh <user_name>** Or **bash badania.sh <user_name>"**
 
 
 ##Tips and tricks
