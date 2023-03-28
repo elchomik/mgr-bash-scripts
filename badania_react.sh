@@ -23,7 +23,7 @@ do
 	then
 		result=$(adb shell top -n 1 -d 1 | grep com.mgr_app | awk '{ printf "%s,%s,%s,%s,%s,%s,%s,%s,%s,%.2f,%s,%s\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12 }') 
 		if [ -n "$result" ]; then
-			echo $result >> ~/Desktop/wyniki/wyniki_react/dane_$1.txt
+			echo $result >> ~/Desktop/wyniki/wyniki_react/dane_szczegolowe_user_$1.txt
 			counter=$((counter+1)) #zwiększ licznik służący do sprawdzania ilości zapisanych rekordów
 		
 			VIRT_col=$(echo $result | awk -F',' '{print $5}' | sed 's/[a-zA-Z]//g') #wyłączenie string z wartości $5
@@ -73,6 +73,6 @@ wynik+="Suma SHR $SHR_sum, Srednia SHR $srednia_SHR \n"
 wynik+="Suma CPU $CPU_sum, Srednia CPU $srednia_CPU \n"
 wynik+="Suma MEM $MEM_sum, Srednia MEM $srednia_MEM \n"
 
-echo $wynik >> ~/Desktop/wyniki/wyniki_react_$1.txt
+echo $wynik >> ~/Desktop/wyniki/wyniki_react/dane_usrednione_user$1.txt
 
 echo "Badanie zostało zakończone!!!!!!!!"
