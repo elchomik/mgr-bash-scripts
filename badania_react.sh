@@ -14,7 +14,7 @@ while true
 do
 	current_time=$(date +%s) #aktualny czas
 		
-	if [ $((current_time - start_time)) -ge 180 ] #jeśli minęły 3 minuty zakończ badanie
+	if [ $((current_time - start_time)) -ge 500 ] #jeśli minęły 3 minuty zakończ badanie
 	then 
 		break
 	fi
