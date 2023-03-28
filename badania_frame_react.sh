@@ -52,7 +52,7 @@ do
 			wynik+="99th perentile:  $percentile_99, "
 			wynik+="\n"
 			
-			echo $wynik >> ~/Desktop/wyniki/wyniki_react/wyniki_frame/dane_szczegolowe_user_$1.txt
+			echo $wynik >> ~/Desktop/wyniki/wyniki_react/wyniki_frame/dane_szczegolowe_$1.txt
 		fi
 	else
 		difference=$((current_time - start_time)) # jeśli użytkwonik wcześniej skończył badanie wtedy do oddzielnego pliku 
@@ -78,5 +78,5 @@ srednie_wynik_user+=" Średnia percentage_90: ${srednia_percent_90}ms, "
 srednie_wynik_user+=" Średnia percentage_95: ${srednia_percent_95}ms, "
 srednie_wynik_user+=" Średnia percentile_99: ${srednia_percent_99}ms, "
 
-echo $srednie_wynik_user >> ~/Desktop/wyniki/wyniki_react/wyniki_frame/dane_srednie_user_$1.txt
+echo $srednie_wynik_user >> ~/Desktop/wyniki/wyniki_react/wyniki_frame/dane_srednie_$1.txt
 echo "Badanie zostało zakończone!!!!!!!!"
