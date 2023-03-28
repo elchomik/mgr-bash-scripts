@@ -24,7 +24,7 @@ do
 		result=$(adb shell top -n 1 -d 1 | grep com.example.mgr+ | awk '{ printf "%s,%s,%s,%s,%.2f,%s,%s,%s,%s,%.2f,%s,%s\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12 }') 
 		
 		if [ -n "$result" ]; then 
-			echo $result >> ~/Desktop/wyniki/wyniki_flutter/dane_$1.txt
+			echo $result >> ~/Desktop/wyniki/wyniki_flutter/dane_szczegolowe_user_$1.txt
 			counter=$((counter+1)) #zwiększ licznik służący do sprawdzania ilości zapisanych rekordów
 		
 			VIRT_col=$(echo $result | awk -F',' '{print $5}' | sed 's/[a-zA-Z]//g') #wyłączenie string z wartości $5
@@ -73,6 +73,6 @@ wynik+="Suma SHR $SHR_sum, Srednia SHR $srednia_SHR "
 wynik+="Suma CPU $CPU_sum, Srednia CPU $srednia_CPU "
 wynik+="Suma MEM $MEM_sum, Srednia MEM $srednia_MEM "
 
-echo $wynik >> ~/Desktop/wyniki/wyniki_flutter_$1.txt
+echo $wynik >> ~/Desktop/wyniki/wyniki/wyniki_flutter/dane_usrednione_user_$1.txt
 
 echo "Badanie zostało zakończone!!!!!!!!"
