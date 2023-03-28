@@ -68,15 +68,15 @@ srednia_percent_90=$(( percentile_90_sum / counter))
 srednia_percent_95=$(( percentile_95_sum / counter))
 srednia_percent_99=$(( percentile_99_sum / counter))
 
-srednie_procent_janky=$((srednia_janky_frames / srednia_total_frames))
+srednie_procent_janky=$(awk "BEGIN { printf \"%.2f\", ($srednia_janky_frames / $srednia_total_frames) * 100 }")
 
 srednie_wynik_user+="Średnia total_frame: $srednia_total_frames, "
-srednie_wynik_user+="Średnia janky_frame: $srednia_janky_frames, "
-srednie_wynik_user+="Średnia janky_frame(%): ${srednie_procent_janky}(%)"
-srednie_wynik_user+="Średnia percentage_50: ${srednia_percent_50}ms, "
-srednie_wynik_user+="Średnia percentage_90: ${srednia_percent_90}ms, "
-srednie_wynik_user+="Średnia percentage_95: ${srednia_percent_95}ms, "
-srednie_wynik_user+="Średnia percentile_99: ${srednia_percent_99}ms, "
+srednie_wynik_user+=" Średnia janky_frame: $srednia_janky_frames, "
+srednie_wynik_user+=" Średnia janky_frame(%): ${srednie_procent_janky}(%), "
+srednie_wynik_user+=" Średnia percentage_50: ${srednia_percent_50}ms, "
+srednie_wynik_user+=" Średnia percentage_90: ${srednia_percent_90}ms, "
+srednie_wynik_user+=" Średnia percentage_95: ${srednia_percent_95}ms, "
+srednie_wynik_user+=" Średnia percentile_99: ${srednia_percent_99}ms, "
 
 echo $srednie_wynik_user >> ~/Desktop/wyniki/wyniki_react/wyniki_frame/dane_srednie_user_$1.txt
 echo "Badanie zostało zakończone!!!!!!!!"
