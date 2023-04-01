@@ -31,7 +31,11 @@ do
 			SHR_col=$(echo $result | awk -F',' '{print $7}' | sed 's/[a-zA-Z]//g')
 			CPU_col=$(echo $result | awk -F',' '{print $9}')
 			MEM_col=$(echo $result | awk -F',' '{print $10}')
-		
+			TIME=$((current_time - start_time))
+			
+			#zapisanie danych do pliku tymczasowego, z którego odczytuje skrypt Pythona
+			echo "$VIRT_col,$RES_col,$SHR_col,$CPU_col,$MEM_col,$TIME" >> ~/Desktop/wyniki/wyniki_react/dane_python/user_$1.csv
+			
 			VIRT_sum=$((VIRT_sum + VIRT_col))
 			RES_sum=$((RES_sum + RES_col))
 			SHR_sum=$((SHR_sum + SHR_col))
