@@ -9,22 +9,32 @@ if len(sys.argv) < 2:
 
 path = '~/Desktop/wyniki/wyniki_react/dane_python/'
 filename = path + sys.argv[1]
+values = ["VIRT", "RES", "SHR", "CPU", "MEM", "TIME"]
 
-
-df = pd.read_csv(filename, header=None, names=["VIRT", "RES", "SHR", "CPU", "MEM", "TIME"])
+df = pd.read_csv(filename, header=None, names=values)
 
 x_values = df["TIME"] / 60
 
-plt.plot(x_values, df["VIRT"], label="VIRT")
-plt.plot(x_values, df["RES"], label="RES")
-plt.plot(x_values, df["SHR"], label="SHR")
-plt.plot(x_values, df["CPU"], label="CPU")
-plt.plot(x_values, df["MEM"], label="MEM")
+fig1, ax1 = plt.subplots()
 
-plt.legend()
-plt.xlabel("Time [min]")
-plt.ylabel("Usage")
-plt.title("Resource usage over time")
+ax1.plot(x_values, df["VIRT"], label="VIRT")
+ax1.plot(x_values, df["RES"], label="RES")
+ax1.plot(x_values, df["SHR"], label="SHR")
+ax1.plot(x_values, df["CPU"], label="CPU")
+ax1.plot(x_values, df["MEM"], label="MEM")
 
-plt.ylim(ymin=df.min().min(), ymax=df.max().max())
+ax1.legend()
+ax1.set_xlabel("Time [min]")
+ax1.set_ylabel("Usage")
+ax1.set_title("Resource usage over time")
+ax1.set_ylim(ymin=df.min().min(), ymax=df.max().max())
+
+table = pd.pivot_table(df, values=values, index= "TIME")
+
+fig2, ax2 = plt.subplots()
+table.plot(kind='bar', ax=ax2)
+ax2.set_title("Wartość VIRT, RES, SHR, CPU, MEM w poszczególnych okresach czasowych")
+ax2.set_xlabel("Time [min]")
+ax2.set_ylabel("Wartość VIRT, RES, SHR, CPU, MEM")
+
 plt.show()
