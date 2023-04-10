@@ -7,7 +7,7 @@ if len(sys.argv) < 2:
     print("Skorzystaj z: python react.py filename.csv")
     sys.exit()
 
-path = '~/Desktop/wyniki/wyniki_react/dane_python/'
+path = '~/Desktop/wyniki/wyniki_flutter/dane_python/'
 filename = path + sys.argv[1]
 values = ["VIRT", "RES", "SHR", "CPU", "MEM", "TIME"]
 
