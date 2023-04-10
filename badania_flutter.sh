@@ -24,7 +24,7 @@ do
 		result=$(adb shell top -n 1 -d 1 | grep com.example.mgr+ | awk '{ printf "%s,%s,%s,%s,%.2f,%s,%s,%s,%s,%.2f,%s,%s\n", $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12 }') 
 		
 		if [ -n "$result" ]; then 
-			echo $result >> ~/Desktop/wyniki/wyniki_flutter/dane_szczegolowe_$1.txt
+			echo $result >> ~/Desktop/wyniki/wyniki_flutter/dane_usrednione/dane_szczegolowe_$1.txt
 			counter=$((counter+1)) #zwiększ licznik służący do sprawdzania ilości zapisanych rekordów
 		
 			VIRT_col=$(echo $result | awk -F',' '{print $5}' | sed 's/[a-zA-Z]//g') #wyłączenie string z wartości $5
@@ -32,6 +32,10 @@ do
 			SHR_col=$(echo $result | awk -F',' '{print $7}' | sed 's/[a-zA-Z]//g')
 			CPU_col=$(echo $result | awk -F',' '{print $9}')
 			MEM_col=$(echo $result | awk -F',' '{print $10}')
+			TIME=$((current_time - start_time))
+			
+			#zapisywanie danych do pliku tymczasowego, z którego odczytuje skrypt Pythona
+			echo "$VIRT_col,$RES_col,$SHR_col,$CPU_col,$MEM_col,$TIME" >> ~/Desktop/wyniki/wyniki_flutter/dane_flutter/user_$1.csv
 		
 			VIRT_sum=$(awk "BEGIN { printf \"%.2f\", $VIRT_sum + $VIRT_col }")
 			RES_sum=$((RES_sum + RES_col))
@@ -73,6 +77,14 @@ wynik+="Suma SHR $SHR_sum, Srednia SHR $srednia_SHR "
 wynik+="Suma CPU $CPU_sum, Srednia CPU $srednia_CPU "
 wynik+="Suma MEM $MEM_sum, Srednia MEM $srednia_MEM "
 
+sumy="$VIRT_sum,$RES_sum,$SHR_sum,$CPU_sum,$MEM_sum,$difference"
+srednie="$srednia_VIRT,srednia_RES,srednia_SHR,srednia_CPU,srednia_MEM,$difference"
+
 echo $wynik >> ~/Desktop/wyniki/wyniki_flutter/wyniki_flutter.txt
+echo $sumy >> ~/Desktop/wyniki/wyniki_flutter/wyniki_flutter_sumy.txt
+echo $srednie >> ~/Desktop/wyniki/wyniki_flutter/wyniki_flutter_srednie.txt
+
+#Uruchomienie skryptu w Pythonie w tle
+nohup python flutter.py user_$1.csv &
 
 echo "Badanie zostało zakończone!!!!!!!!"
