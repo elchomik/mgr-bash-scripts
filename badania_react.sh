@@ -77,6 +77,9 @@ wynik+="Suma SHR $SHR_sum, Srednia SHR $srednia_SHR \n"
 wynik+="Suma CPU $CPU_sum, Srednia CPU $srednia_CPU \n"
 wynik+="Suma MEM $MEM_sum, Srednia MEM $srednia_MEM \n"
 
-echo $wynik >> ~/Desktop/wyniki/wyniki_react/dane_usrednione_$1.txt
+echo $wynik >> ~/Desktop/wyniki/wyniki_react/wyniki_react.txt
+
+#Uruchomienie skryptu w Pythonie w tle
+nohup python react.py user_$1.csv & 
 
 echo "Badanie zostało zakończone!!!!!!!!"
