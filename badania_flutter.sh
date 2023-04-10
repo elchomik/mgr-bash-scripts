@@ -73,6 +73,6 @@ wynik+="Suma SHR $SHR_sum, Srednia SHR $srednia_SHR "
 wynik+="Suma CPU $CPU_sum, Srednia CPU $srednia_CPU "
 wynik+="Suma MEM $MEM_sum, Srednia MEM $srednia_MEM "
 
-echo $wynik >> ~/Desktop/wyniki/wyniki_flutter/dane_usrednione_$1.txt
+echo $wynik >> ~/Desktop/wyniki/wyniki_flutter/wyniki_flutter.txt
 
 echo "Badanie zostało zakończone!!!!!!!!"
