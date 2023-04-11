@@ -35,7 +35,7 @@ do
 			TIME=$((current_time - start_time))
 			
 			#zapisywanie danych do pliku tymczasowego, z którego odczytuje skrypt Pythona
-			echo "$VIRT_col,$RES_col,$SHR_col,$CPU_col,$MEM_col,$TIME" >> ~/Desktop/wyniki/wyniki_flutter/dane_flutter/user_$1.csv
+			echo "$VIRT_col,$RES_col,$SHR_col,$CPU_col,$MEM_col,$TIME" >> ~/Desktop/wyniki/wyniki_flutter/dane_python/user_$1.csv
 		
 			VIRT_sum=$(awk "BEGIN { printf \"%.2f\", $VIRT_sum + $VIRT_col }")
 			RES_sum=$((RES_sum + RES_col))
@@ -78,7 +78,7 @@ wynik+="Suma CPU $CPU_sum, Srednia CPU $srednia_CPU "
 wynik+="Suma MEM $MEM_sum, Srednia MEM $srednia_MEM "
 
 sumy="$VIRT_sum,$RES_sum,$SHR_sum,$CPU_sum,$MEM_sum,$difference"
-srednie="$srednia_VIRT,srednia_RES,srednia_SHR,srednia_CPU,srednia_MEM,$difference"
+srednie="$srednia_VIRT,$srednia_RES,$srednia_SHR,$srednia_CPU,$srednia_MEM,$difference"
 
 echo $wynik >> ~/Desktop/wyniki/wyniki_flutter/wyniki_flutter.txt
 echo $sumy >> ~/Desktop/wyniki/wyniki_flutter/wyniki_flutter_sumy.txt
